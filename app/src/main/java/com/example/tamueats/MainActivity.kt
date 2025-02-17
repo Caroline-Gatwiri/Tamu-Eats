@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.tamueats.databinding.ActivityMainBinding
 
@@ -26,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         val bottomNavigation = binding.bnv
-        val navController = Navigation.findNavController(this, R.id.navigationFragment)
+        val navController = Navigation.findNavController(this, R.id.host_fragment)
         NavigationUI.setupWithNavController(bottomNavigation, navController)
     }
 }
