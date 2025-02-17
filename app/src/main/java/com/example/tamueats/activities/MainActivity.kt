@@ -1,4 +1,4 @@
-package com.example.tamueats
+package com.example.tamueats.activities
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
+import com.example.tamueats.R
 import com.example.tamueats.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
