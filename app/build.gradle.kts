@@ -50,6 +50,11 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    implementation(libs.intuit.sdp)
+    implementation(libs.intuit.ssp)
+    implementation(libs.android.gif.drawable)
+
     implementation(libs.sdp.android)
     implementation(libs.ssp.android)
     implementation(libs.android.gif.drawable)
