@@ -1,5 +1,8 @@
 [versions]
 agp = "8.3.2"
+androidGifDrawable = "1.2.17"
+converterGson = "2.9.0"
+glide = "4.12.0"
 kotlin = "1.9.0"
 coreKtx = "1.15.0"
 junit = "4.13.2"
@@ -11,11 +14,22 @@ activity = "1.10.0"
 constraintlayout = "2.2.0"
 navigationFragmentKtx = "2.8.6"
 navigationUiKtx = "2.8.6"
+<<<<<<< HEAD
 intuit = "1.0.6"
 gif = "1.2.17"
+=======
+retrofit = "2.10.0"
+sdpAndroid = "1.0.6"
+sspAndroid = "1.0.6"
+lifecycle = "2.4.0-rc01"
+lifecycle-ext = "1.1.0"
+>>>>>>> Devop
 
 [libraries]
+android-gif-drawable = { module = "pl.droidsonroids.gif:android-gif-drawable", version.ref = "androidGifDrawable" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -25,9 +39,18 @@ androidx-activity = { group = "androidx.activity", name = "activity", version.re
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
 androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
+<<<<<<< HEAD
 intuit-sdp = { module = "com.intuit.sdp:sdp-android", version.ref = "intuit" }
 intuit-ssp = { module = "com.intuit.ssp:ssp-android", version.ref = "intuit" }
 gif-drawable = { module = "pl.droidsonroids.gif:android-gif-drawable", version.ref = "gif" }
+=======
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+sdp-android = { module = "com.intuit.sdp:sdp-android", version.ref = "sdpAndroid" }
+ssp-android = { module = "com.intuit.ssp:ssp-android", version.ref = "sspAndroid" }
+lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+lifecycle-livedata-ktx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycle" }
+
+>>>>>>> Devop
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
