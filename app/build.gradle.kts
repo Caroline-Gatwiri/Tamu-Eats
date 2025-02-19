@@ -50,11 +50,11 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-<<<<<<< HEAD
-    implementation("com.intuit.sdp:sdp-android:1.0.6")
-    implementation("com.intuit.ssp:ssp-android:1.0.6")
-    implementation("pl.droidsonroids.gif:android-gif-drawable:1.2.17")
-=======
+
+    implementation(libs.intuit.sdp)
+    implementation(libs.intuit.ssp)
+    implementation(libs.android.gif.drawable)
+
     implementation(libs.sdp.android)
     implementation(libs.ssp.android)
     implementation(libs.android.gif.drawable)
@@ -65,6 +65,5 @@ dependencies {
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.lifecycle.livedata.ktx)
 
->>>>>>> Devop
 
 }
