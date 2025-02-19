@@ -4,8 +4,10 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.tamueats.dataclass.Category
 import com.example.tamueats.dataclass.CategoryList
-import com.example.tamueats.dataclass.CategoryMeals
+import com.example.tamueats.dataclass.MealsByCategoryList
+import com.example.tamueats.dataclass.MealsByCategory
 import com.example.tamueats.dataclass.Meal
 import com.example.tamueats.dataclass.MealClass
 import com.example.tamueats.retrofit.RetrofitInstance
@@ -15,7 +17,10 @@ import retrofit2.Response
 
 class HomeViewModel(): ViewModel() {
     private var randomMealLiveData = MutableLiveData<Meal>()
-    private var popularItemsLiveData = MutableLiveData<List<CategoryMeals>>()
+    private var popularItemsLiveData = MutableLiveData<List<MealsByCategory>>()
+    private var categoriesLiveData = MutableLiveData<List<Category>>()
+
+
     fun getRandomMeal(){
         RetrofitInstance.api.getRandomMeal().enqueue(object : Callback<MealClass> {
             override fun onResponse(call: Call<MealClass>, response: Response<MealClass>) {
@@ -36,15 +41,33 @@ class HomeViewModel(): ViewModel() {
     }
 
     fun getPopularItems() {
-        RetrofitInstance.api.getPopularItems("Seafood").enqueue(object : Callback<CategoryList> {
-            override fun onResponse(call: Call<CategoryList>, response: Response<CategoryList>) {
+        RetrofitInstance.api.getPopularItems("Seafood").enqueue(object : Callback<MealsByCategoryList> {
+            override fun onResponse(call: Call<MealsByCategoryList>, response: Response<MealsByCategoryList>) {
                 if (response.body() != null) {
                     popularItemsLiveData.value = response.body()!!.meals
                 }
             }
 
+            override fun onFailure(call: Call<MealsByCategoryList>, t: Throwable) {
+                Log.d("HomeVVM", t.message.toString())
+            }
+        })
+    }
+
+    fun getCategories() {
+        RetrofitInstance.api.getCategories().enqueue(object : Callback<CategoryList> {
+            override fun onResponse(call: Call<CategoryList>, response: Response<CategoryList>) {
+                if (response.isSuccessful && response.body() != null) {
+                    val categories = response.body()!!.categories
+                    Log.d("HomeViewModel", "Categories fetched: ${categories.size}")
+                    categoriesLiveData.postValue(categories)
+                } else {
+                    Log.e("HomeViewModel", "Failed to fetch categories: ${response.message()}")
+                }
+            }
+
             override fun onFailure(call: Call<CategoryList>, t: Throwable) {
-                TODO("Not yet implemented")
+                Log.e("HomeViewModel", "API call failed: ${t.message}")
             }
         })
     }
@@ -52,8 +75,11 @@ class HomeViewModel(): ViewModel() {
         return randomMealLiveData
     }
 
-    fun observePopularMeals(): LiveData<List<CategoryMeals>> {
+    fun observePopularMeals(): LiveData<List<MealsByCategory>> {
         return popularItemsLiveData
 
+    }
+    fun observeCategoryLiveData(): LiveData<List<Category>>{
+        return categoriesLiveData
     }
 }
