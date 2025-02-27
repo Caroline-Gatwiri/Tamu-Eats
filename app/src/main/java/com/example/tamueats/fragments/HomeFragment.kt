@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.example.tamueats.activities.CategoryMealsActivity
 import com.example.tamueats.activities.MealActivity
 import com.example.tamueats.adapters.CategoriesAdapter
 import com.example.tamueats.adapters.MostPopularMealAdapter
@@ -28,12 +29,17 @@ class HomeFragment : Fragment() {
     private lateinit var popularItemAdapter: MostPopularMealAdapter
     private lateinit var categoriesAdapter: CategoriesAdapter
 
+
     companion object{
         const val MEAL_ID = "com.example.tamueats.fragments.idMeal"
         const val MEAL_NAME = "com.example.tamueats.fragments.nameMeal"
         const val MEAL_THUMB = "com.example.tamueats.fragments.thumbMeal"
         const val MEAL_VIDEO = "com.example.tamueats.fragments.videoMeal"
         const val MEAL_INSTRUCTION = "com.example.tamueats.fragments.instructionMeal"
+        const val CATEGORY_NAME = "com.example.tamueats.fragments.categoryName"
+
+
+
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,8 +73,18 @@ class HomeFragment : Fragment() {
         homemvvm.getCategories()
         observeCategoriesLiveData()
 
+        onCategoryClick()
 
 
+
+    }
+
+    private fun onCategoryClick() {
+        categoriesAdapter.onItemClick = {category->
+            val intent = Intent(activity, CategoryMealsActivity::class.java)
+            intent.putExtra(CATEGORY_NAME, category.strCategory)
+            startActivity(intent)
+        }
     }
 
     private fun prepareCategoriesRecyclerView() {
