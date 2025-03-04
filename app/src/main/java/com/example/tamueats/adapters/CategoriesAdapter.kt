@@ -10,6 +10,7 @@ import com.example.tamueats.dataclass.Category
 class CategoriesAdapter() : RecyclerView.Adapter<CategoriesAdapter.CategoryViewHolder>() {
 
     private var categoriesList = ArrayList<Category>()
+    var onItemClick: ((Category) -> Unit)? = null
 
     fun setCategoryList(categoryList: List<Category>) {
         this.categoriesList.clear()
@@ -37,6 +38,10 @@ class CategoriesAdapter() : RecyclerView.Adapter<CategoriesAdapter.CategoryViewH
             .load(category.strCategoryThumb)
             .into(holder.binding.imageCategory)
         holder.binding.tvcategoryName.text = category.strCategory
+
+        holder.itemView.setOnClickListener {
+            onItemClick!!.invoke(categoriesList[position])
+        }
     }
 
     override fun getItemCount(): Int {
